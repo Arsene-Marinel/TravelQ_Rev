@@ -1,4 +1,4 @@
-package com.travelq.travelq;
+package com.travelq;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -9,5 +9,4 @@ public class TravelqApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(TravelqApplication.class, args);
 	}
-
 }
