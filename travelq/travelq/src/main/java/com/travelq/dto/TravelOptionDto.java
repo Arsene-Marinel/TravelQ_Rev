@@ -14,5 +14,5 @@ public class TravelOptionDto {
     private boolean checkIn;
     private String seatSelection;
     private String extraBaggage;
-    private TicketDto ticket;
+    private Long ticketId;
 }

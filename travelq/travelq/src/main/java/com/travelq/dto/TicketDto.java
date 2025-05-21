@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 public class TicketDto {
     private Long id;
     private LocalDateTime purchaseDate;
-    private UserDto user;
+    private Long userId;
     private FlightDto flight;
     private TravelOptionDto travelOption;
 }
