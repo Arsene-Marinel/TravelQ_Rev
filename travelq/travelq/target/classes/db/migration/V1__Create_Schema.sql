@@ -41,33 +41,33 @@ CREATE TABLE IF NOT EXISTS tickets (
 );
 
 -- Travel Options table
--- CREATE TABLE IF NOT EXISTS travel_options (
---     option_id BIGINT AUTO_INCREMENT PRIMARY KEY,
---     ticket_id BIGINT NOT NULL UNIQUE,
---     check_in BOOLEAN NOT NULL DEFAULT FALSE,
---     seat_selection VARCHAR(50) NOT NULL,
---     extra_baggage VARCHAR(50),
---     FOREIGN KEY (ticket_id) REFERENCES tickets(ticket_id) ON DELETE CASCADE
--- );
-
 CREATE TABLE IF NOT EXISTS travel_options (
     option_id BIGINT AUTO_INCREMENT PRIMARY KEY,
     ticket_id BIGINT NOT NULL UNIQUE,
     check_in BOOLEAN NOT NULL DEFAULT FALSE,
-    seat_selection ENUM(
-                         'ECONOMY',
-                         'BUSINESS'
-                        ) NOT NULL,
-    extra_baggage ENUM(
-                          'OVERWEIGHT_BAGGAGE',
-                          'OVERSIZE_BAGGAGE',
-                          'SPECIAL_BAGGAGE',
-                          'EXCEED_NUMBER_BAGGAGE',
-                          'CHECKED_BAGGAGE',
-                          'CARRIED_BAGGAGE'
-                      ),
+    seat_selection VARCHAR(50) NOT NULL,
+    extra_baggage VARCHAR(50),
     FOREIGN KEY (ticket_id) REFERENCES tickets(ticket_id) ON DELETE CASCADE
-    );
+);
+
+-- CREATE TABLE IF NOT EXISTS travel_options (
+--     option_id BIGINT AUTO_INCREMENT PRIMARY KEY,
+--     ticket_id BIGINT NOT NULL UNIQUE,
+--     check_in BOOLEAN NOT NULL DEFAULT FALSE,
+--     seat_selection ENUM(
+--                          'ECONOMY',
+--                          'BUSINESS'
+--                         ) NOT NULL,
+--     extra_baggage ENUM(
+--                           'OVERWEIGHT_BAGGAGE',
+--                           'OVERSIZE_BAGGAGE',
+--                           'SPECIAL_BAGGAGE',
+--                           'EXCEED_NUMBER_BAGGAGE',
+--                           'CHECKED_BAGGAGE',
+--                           'CARRIED_BAGGAGE'
+--                       ),
+--     FOREIGN KEY (ticket_id) REFERENCES tickets(ticket_id) ON DELETE CASCADE
+--     );
 
 -- Notifications table
 CREATE TABLE IF NOT EXISTS notifications (
