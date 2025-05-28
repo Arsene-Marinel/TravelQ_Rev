@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Lista Bilete</title>
+    <link rel="stylesheet" th:href="@{/css/ticket.css}" />
+    <link rel="stylesheet" href="/css/navbar.css"/>
+    <script src="/js/navbar.js"></script>
+</head>
+<body>
+
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+
+
+<h1>Lista Bilete</h1>
+<a href="/view/tickets/add" class="btn">Adaugă Bilet</a>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Data Cumpărării</th>
+        <th>User ID</th>
+        <th>Destinație</th>
+        <th>Acțiuni</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="ticket : ${ticketList}">
+        <td th:text="${ticket.id}"></td>
+        <td th:text="${#temporals.format(ticket.purchaseDate, 'dd-MM-yyyy HH:mm')}"></td>
+        <td th:text="${ticket.userId}"></td>
+        <td th:text="${ticket.flight.destination}"></td>
+        <td>
+            <a th:href="@{/view/tickets/edit/{id}(id=${ticket.id})}">Editează</a> |
+            <a th:href="@{/view/tickets/delete/{id}(id=${ticket.id})}" onclick="return confirm('Ștergi biletul?')">Șterge</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Lista Zboruri</title>
+    <link rel="stylesheet" th:href="@{/css/flight.css}" />
+    <link rel="stylesheet" href="/css/navbar.css"/>
+    <script src="/js/navbar.js"></script>
+</head>
+<body>
+
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+
+
+<h1>Lista Zboruri</h1>
+
+<a href="/view/flights/add" class="btn">Adaugă Zbor Nou</a>
+
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Origine</th>
+        <th>Destinație</th>
+        <th>Plecare</th>
+        <th>Sosire</th>
+        <th>Preț</th>
+        <th>Escale</th>
+        <th>Acțiuni</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="flight : ${flightList}">
+        <td th:text="${flight.id}"></td>
+        <td th:text="${flight.origin}"></td>
+        <td th:text="${flight.destination}"></td>
+        <td th:text="${#temporals.format(flight.departureTime, 'dd-MM-yyyy HH:mm')}"></td>
+        <td th:text="${#temporals.format(flight.arrivalTime, 'dd-MM-yyyy HH:mm')}"></td>
+        <td th:text="${flight.price}"></td>
+        <td th:text="${flight.stopovers}"></td>
+        <td>
+            <a th:href="@{'/view/flights/edit/' + ${flight.id}}">Editare</a> |
+            <a th:href="@{'/view/flights/delete/' + ${flight.id}}" onclick="return confirm('Ești sigur că vrei să ștergi acest zbor?')">Ștergere</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

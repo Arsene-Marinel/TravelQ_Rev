@@ -1,0 +1,19 @@
+<div th:fragment="navbar">
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a class="navbar-logo" th:href="@{/view/flights}">✈️ TravelApp</a>
+
+            <ul class="navbar-menu">
+                <li><a th:href="@{/view/flights}">Flights</a></li>
+                <li><a th:href="@{/view/flights-paginated}">Flights Paginated</a></li>
+                <li><a th:href="@{/view/tickets}">Tickets</a></li>
+                <li><a th:href="@{/view/notifications}">Notifications</a></li>
+                <li><a th:href="@{/view/travel-options}">Travel Options</a></li>
+                <li><a th:href="@{/view/travel-histories}">Travel Histories</a></li>
+                <li><a th:href="@{/view/flight-comparisons}">Flight Comparisons</a></li>
+                <li><a th:href="@{/view/login}">Login</a></li>
+                <li><a th:href="@{/view/register}">Register</a></li>
+            </ul>
+        </div>
+    </nav>
+</div>

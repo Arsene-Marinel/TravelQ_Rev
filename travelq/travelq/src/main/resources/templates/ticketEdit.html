@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Editează Bilet</title>
+    <link rel="stylesheet" th:href="@{/css/ticket.css}" />
+    <link rel="stylesheet" href="/css/navbar.css"/>
+    <script src="/js/navbar.js"></script>
+</head>
+<body>
+
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+
+
+<h1>Editează Bilet</h1>
+<form th:action="@{/view/tickets/edit/{id}(id=${ticket.id})}" th:object="${ticket}" method="post">
+    <label>Data Cumpărării:</label>
+    <input type="datetime-local" th:field="*{purchaseDate}" required />
+
+    <label>ID Utilizator:</label>
+    <input type="number" th:field="*{userId}" required />
+
+    <label>ID Zbor:</label>
+    <input type="number" th:field="*{flight.id}" required />
+
+    <button type="submit" class="btn">Actualizează</button>
+</form>
+<a href="/view/tickets" class="btn">Înapoi</a>
+</body>
+</html>

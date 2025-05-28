@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Adaugă Comparație Zboruri</title>
+    <link rel="stylesheet" th:href="@{/css/flightComparison.css}">
+    <link rel="stylesheet" href="/css/navbar.css"/>
+    <script src="/js/navbar.js"></script>
+</head>
+<body>
+
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+
+<h1>Adaugă Comparație de Zboruri</h1>
+<form action="/view/flight-comparisons/add" method="post">
+    <label for="flights">Select flights:</label>
+    <select name="flights" multiple id="flights">
+        <option th:each="flight : ${flights}"
+                th:value="${flight.id}"
+                th:text="${flight.origin} + ' -> ' + ${flight.destination}">
+        </option>
+    </select>
+    <button type="submit">Save Comparison</button>
+</form>
+<a href="/view/flight-comparisons">Înapoi la listă</a>
+</body>
+</html>

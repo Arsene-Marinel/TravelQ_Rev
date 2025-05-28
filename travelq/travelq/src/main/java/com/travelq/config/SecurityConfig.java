@@ -26,12 +26,15 @@ public class SecurityConfig {
                 .requestMatchers("/swagger-ui/**").permitAll()
                 .requestMatchers("/v3/api-docs/**").permitAll()
                 .requestMatchers("/swagger-ui.html").permitAll()
+                // Permit Views
+                .requestMatchers("/css/**", "/view/**").permitAll() // For web pages
                 .anyRequest().authenticated()
             )
             .httpBasic(Customizer.withDefaults())
-            .sessionManagement(session -> session
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-            );
+                .sessionManagement(session -> session
+                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                        .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
+                );
         
         // Allow frames for H2 console
         http.headers(headers -> headers.frameOptions(frameOptions -> frameOptions.disable()));

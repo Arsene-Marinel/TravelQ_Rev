@@ -93,4 +93,13 @@ public class FlightServiceImpl implements FlightService {
         flightRepository.deleteById(flightId);
         log.debug("Flight deleted with ID: {}", flightId);
     }
+
+    @Override
+    public List<FlightDto> getFlightsByIds(List<Long> ids) {
+        List<FlightEntity> flights = flightRepository.findAllById(ids);
+        return flights.stream()
+                .map(flight -> modelMapper.map(flight, FlightDto.class))
+                .toList();
+    }
+
 }

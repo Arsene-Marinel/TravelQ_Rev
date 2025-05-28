@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Edit Flight Comparison</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+    <link rel="stylesheet" href="/css/navbar.css"/>
+    <script src="/js/navbar.js"></script>
+</head>
+<body>
+
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+
+<h1>Edit Flight Comparison</h1>
+<form th:action="@{/view/flight-comparisons/edit/{id}(id=${flightComparison.id})}" method="post">
+    <label>Select Flights:</label><br/>
+    <div th:each="flight : ${flights}">
+        <input type="checkbox"
+               name="flights"
+               th:id="${'flight_' + flight.id}"
+               th:value="${flight.id}"
+               th:checked="${#lists.contains(flightComparison.flights, flight)}" />
+        <label th:for="${'flight_' + flight.id}"
+               th:text="${flight.origin + ' -> ' + flight.destination}"></label><br/>
+    </div>
+    <br/>
+    <input type="submit" value="Update Comparison" />
+</form>
+<br/>
+<a href="/view/flight-comparisons" class="button">Back to List</a>
+</body>
+</html>

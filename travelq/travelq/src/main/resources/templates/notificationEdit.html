@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Editează Notificare</title>
+    <link rel="stylesheet" th:href="@{/css/notification.css}" />
+    <link rel="stylesheet" href="/css/navbar.css"/>
+    <script src="/js/navbar.js"></script>
+</head>
+<body>
+
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+
+
+<h1>Editează Notificare</h1>
+<form th:action="@{/view/notifications/edit/{id}(id=${notification.id})}" th:object="${notification}" method="post">
+    <label>Mesaj:</label>
+    <input type="text" th:field="*{message}" required />
+
+    <label>Citită:</label>
+    <select th:field="*{isRead}">
+        <option value="false" th:selected="*{!isRead}">Nu</option>
+        <option value="true" th:selected="*{isRead}">Da</option>
+    </select>
+
+    <label>ID Utilizator:</label>
+    <input type="number" th:field="*{userId}" required />
+
+    <button type="submit" class="btn">Actualizează</button>
+</form>
+<a href="/view/notifications" class="btn">Înapoi</a>
+</body>
+</html>

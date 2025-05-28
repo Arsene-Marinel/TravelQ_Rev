@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Travel Histories</title>
+    <link rel="stylesheet" type="text/css" href="/css/travelHistory.css">
+    <link rel="stylesheet" href="/css/navbar.css"/>
+    <script src="/js/navbar.js"></script>
+</head>
+<body>
+
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+
+
+<h1>Travel Histories</h1>
+<a href="/view/travel-histories/add">Add New Travel History</a>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Flights Count</th>
+        <th>Total Spent</th>
+        <th>User ID</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="history : ${travelHistoryList}">
+        <td th:text="${history.id}"></td>
+        <td th:text="${history.flightsCount}"></td>
+        <td th:text="${history.totalSpent}"></td>
+        <td th:text="${history.user.id}"></td>
+        <td>
+            <a th:href="@{'/view/travel-histories/edit/' + ${history.id}}">Edit</a> |
+            <a th:href="@{'/view/travel-histories/delete/' + ${history.id}}">Delete</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Travel Option</title>
+    <link rel="stylesheet" th:href="@{/css/travelOption.css}" />
+    <link rel="stylesheet" href="/css/navbar.css"/>
+    <script src="/js/navbar.js"></script>
+</head>
+<body>
+
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+
+
+<h1>Add Travel Option</h1>
+<form th:action="@{/view/travel-options/add}" th:object="${travelOption}" method="post">
+    <label>Check-In:
+        <input type="checkbox" th:field="*{checkIn}" />
+    </label>
+    <label>Seat Selection:
+        <select th:field="*{seatSelection}">
+            <option value="ECONOMY">ECONOMY</option>
+            <option value="BUSINESS">BUSINESS</option>
+        </select>
+    </label>
+    <label>Extra Baggage:
+        <select th:field="*{extraBaggage}">
+            <option th:each="b : ${T(com.travelq.domain.enums.TravelOptionExtraBaggageEnum).values()}"
+                    th:value="${b}" th:text="${b}"></option>
+        </select>
+    </label>
+    <label>Ticket ID:
+        <input type="number" th:field="*{ticketId}" required />
+    </label>
+    <button type="submit">Save</button>
+</form>
+<a href="/view/travel-options">Back to List</a>
+</body>
+</html>

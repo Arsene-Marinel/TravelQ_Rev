@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Editare Zbor</title>
+    <link rel="stylesheet" th:href="@{/css/flight.css}" />
+    <link rel="stylesheet" href="/css/navbar.css"/>
+    <script src="/js/navbar.js"></script>
+</head>
+<body>
+
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+
+
+<h1>Editare Zbor</h1>
+
+<form th:action="@{'/view/flights/edit/' + ${flight.id}}" th:object="${flight}" method="post">
+    <label>Origine: <input type="text" th:field="*{origin}" required /></label><br/>
+    <label>Destinație: <input type="text" th:field="*{destination}" required /></label><br/>
+    <label>Ora plecării: <input type="datetime-local" th:field="*{departureTime}" required /></label><br/>
+    <label>Ora sosirii: <input type="datetime-local" th:field="*{arrivalTime}" required /></label><br/>
+    <label>Preț: <input type="number" step="0.01" th:field="*{price}" required /></label><br/>
+    <label>Escale: <input type="number" min="0" th:field="*{stopovers}" required /></label><br/>
+
+    <button type="submit">Actualizează</button>
+    <a href="/view/flights">Anulează</a>
+</form>
+
+</body>
+</html>
