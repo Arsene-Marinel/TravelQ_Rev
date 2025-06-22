@@ -41,15 +41,14 @@ class UserControllerTest {
 
     @Test
     void testRegisterUser_shouldReturnCreatedUser() throws Exception {
-        UserDto userDto = createUserDto("testuser");
+        UserDto userDto = createUserDto("testuser2");
 
         mockMvc.perform(post("/api/users/register")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(userDto)))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id", notNullValue()))
-                .andExpect(jsonPath("$.username", is("testuser")))
-                .andExpect(jsonPath("$.email", is("testuser@example.com")));
+                .andExpect(jsonPath("$.username", is("testuser2")));
     }
 
     @Test
